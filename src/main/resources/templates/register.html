@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-   <th:block th:include="fragments/header"></th:block>    
+<th:block th:include="fragments/header"></th:block>
 </head>
+
 <body>
-    <th:block th:include="fragments/headernav"></th:block>
+	<th:block th:include="fragments/nav"></th:block>    
 	
 	<!-- breadcrumb start-->
     <section class="breadcrumb breadcrumb_bg">
@@ -67,5 +68,7 @@
 		</div>
 	</div>
 	
+	<th:block th:include="fragments/footer"></th:block>
+</body>
 
 </html>
