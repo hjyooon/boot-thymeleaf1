@@ -1,4 +1,4 @@
-package idu.cs.domain;
+package idu.cs.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,9 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import idu.cs.domain.User;
+
 @Entity
 @Table(name = "user_table")
-public class User {
+public class UserEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id; 
@@ -21,9 +23,9 @@ public class User {
 	private String name;
 	private String company;
 	
-	public User() {}
+	public UserEntity() {}
 	
-	public User(String userId, String userPw, String name, String company) {
+	public UserEntity(String userId, String userPw, String name, String company) {
 		super();
 		this.userId = userId;
 		this.userPw = userPw;
@@ -63,7 +65,24 @@ public class User {
 	public void setCompany(String company) {
 		this.company = company;
 	}
-
+	
+	public User buildDomain() {
+		User user = new User();
+		user.setId(id); //primary key, auto increment, hibernate sequence ,식별자
+		user.setUserId(userId); // login id,unique
+		user.setUserPw(userPw);
+		user.setName(name);
+		user.setCompany(company);
+		return user;
+	}
+	
+	public void buildEntity(User user) {
+		id = user.getId();
+		userId = user.getUserId();
+		userPw = user.getUserPw();
+		name = user.getName();
+		company = user.getCompany();
+	}
 	
 	
 }
